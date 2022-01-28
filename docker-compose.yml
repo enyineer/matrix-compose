@@ -16,7 +16,7 @@ services:
       POSTGRES_DB: synapse
       POSTGRES_USER: synapse
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      LC_ALL: 'C.UTF-8'
+      LANG: 'c.utf8'
      
   element:
     depends_on:
