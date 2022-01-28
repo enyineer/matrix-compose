@@ -63,10 +63,10 @@ services:
       matrix_frontend:
         ipv4_address: 10.10.11.4
     expose:
-      - 8080
+      - 80
     environment:
       VIRTUAL_HOST: ${SYNAPSE_ADMIN_URL}
-      VIRTUAL_PORT: "8080"
+      VIRTUAL_PORT: "80"
       LETSENCRYPT_HOST: ${SYNAPSE_ADMIN_URL}
       REACT_APP_SERVER: ${SYNAPSE_URL}
   
