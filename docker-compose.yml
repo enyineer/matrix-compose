@@ -18,6 +18,8 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
      
   element:
+    depends_on:
+      - acme-companion
     image: vectorim/element-web:latest
     restart: unless-stopped
     volumes:
@@ -33,12 +35,15 @@ services:
       LETSENCRYPT_HOST: ${ELEMENT_URL}
         
   synapse:
+    depends_on:
+      - postgres
     image: matrixdotorg/synapse:latest
     restart: unless-stopped
     networks:
       matrix_backend:
         ipv4_address: 10.10.10.3
-      matrix_frontend: 10.10.11.3
+      matrix_frontend:
+        ipv4_address: 10.10.11.3
     volumes:
      - ./matrix/synapse:/data
     expose:
@@ -64,6 +69,8 @@ services:
       - 443:443
   
   acme-companion:
+    depends_on:
+      - nginx-proxy
     image: nginxproxy/acme-companion
     restart: unless-stopped
     networks:
