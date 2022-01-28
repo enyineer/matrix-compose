@@ -33,7 +33,7 @@ Open the previously generated homserver.yaml file
 ```
 sudo nano matrix/synapse/homeserver.yaml
 ```
-Replace the database: property with the following:
+Replace the "database:" property with the following:
 ```
 database:
   name: psycopg2
@@ -44,10 +44,6 @@ database:
     host: postgres
     cp_min: 5
     cp_max: 10
-```
-Replace the default listeners resources (under listeners object) with this:
-```
-- names: [client, federation, openid]
 ```
 Save the file.
 
