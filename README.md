@@ -27,6 +27,8 @@ Set `ELEMENT_URL` to the hostname of your element url
 
 Set `SYNAPSE_URL` to the hostname of your synapse home url
 
+Set `SYNAPSE_ADMIN_URL` to the hostname of your synapse admin backend url
+
 ### Edit homeserver.yaml 📃
 Open the previously generated homserver.yaml file
 
