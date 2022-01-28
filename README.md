@@ -47,6 +47,13 @@ database:
 ```
 Save the file.
 
+### Edit the element config
+Open matrix/element/element-config.json and replace the following with your data:
+```
+"base_url": "https://home.xhosted.de",
+"server_name": "XHosted"
+```
+
 ## Start the engines 🚂
 Run:
 ```
