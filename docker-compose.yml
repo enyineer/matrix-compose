@@ -1,0 +1,92 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:14
+    restart: unless-stopped
+    networks:
+      matrix_backend:
+        ipv4_address: 10.10.10.2
+    volumes:
+     - ./matrix/postgresql/data:/var/lib/postgresql/data
+    expose:
+      - 5432
+
+    # These will be used in homeserver.yaml later on
+    environment:
+      POSTGRES_DB: synapse
+      POSTGRES_USER: synapse
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+     
+  element:
+    image: vectorim/element-web:latest
+    restart: unless-stopped
+    volumes:
+      - ./matrix/element/element-config.json:/app/config.json
+    networks:
+      matrix_frontend:
+        ipv4_address: 10.10.11.2
+    expose:
+      - 80
+    environment:
+      VIRTUAL_HOST: ${ELEMENT_URL}
+      VIRTUAL_PORT: "80"
+      LETSENCRYPT_HOST: ${ELEMENT_URL}
+        
+  synapse:
+    image: matrixdotorg/synapse:latest
+    restart: unless-stopped
+    networks:
+      matrix_backend:
+        ipv4_address: 10.10.10.3
+    volumes:
+     - ./matrix/synapse:/data
+    expose:
+      - 8008
+    environment:
+      VIRTUAL_HOST: ${SYNAPSE_URL}
+      VIRTUAL_PORT: "8008"
+      LETSENCRYPT_HOST: ${SYNAPSE_URL}
+  
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy
+    restart: unless-stopped
+    networks:
+      matrix-frontend:
+        ipv4_address: 10.10.11.3
+    volumes:
+      - nginx-certs:/etc/nginx/certs
+      - nginx-vhost:/etc/nginx/vhost.d
+      - nginx-html:/usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    ports:
+      - 80:80
+      - 443:443
+  
+  acme-companion:
+    image: nginxproxy/acme-companion
+    restart: unless-stopped
+    networks:
+      matrix-frontend:
+        ipv4_address: 10.10.11.4
+    volumes:
+      - nginx-certs:/etc/nginx/certs
+      - nginx-vhost:/etc/nginx/vhost.d
+      - nginx-html:/usr/share/nginx/html
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - acme:/etc/acme.sh
+    environment:
+      DEFAULT_EMAIL: ${LETSENCRYPT_MAIL}
+
+volumes:
+  nginx-certs:
+  nginx-vhost:
+  nginx-html:
+  acme:
+
+networks:
+  matrix_backend:
+    external:
+      name: matrix_backend
+  matrix_frontend:
+    external:
+      name: matrix_frontend
