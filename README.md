@@ -87,3 +87,11 @@ docker-compose up -d
 
 ## Add an admin user 🧑‍🦰
 See [Synapse GitHub](https://github.com/matrix-org/synapse/tree/develop/docker#generating-an-admin-user) for a tutorial on how to do this. Replace "synapse" (containers name) in the provided command with `matrix-compose_synapse_1` - which is the auto-generated name of your docker-compose synapse server container.
+
+## hello world
+If you want anyone from the world wide web to be able to open your element instance or connect to your Synapse-Server, simply open/forward the following ports to your docker host:
+```
+80/tcp (For letsencrypt challenge)
+443/tcp (For Element and Synapse HTTPS traffic)
+8448/tcp (For Synapse federation)
+```
