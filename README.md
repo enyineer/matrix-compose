@@ -60,3 +60,6 @@ Run:
 chmod +x run.sh
 ./run.sh
 ```
+
+## Add an admin user
+See [Synapse GitHub](https://github.com/matrix-org/synapse/tree/develop/docker#generating-an-admin-user) for a tutorial on how to do this. Switch "synapse" (containers name) in with `matrix-compose_synapse_1`.
