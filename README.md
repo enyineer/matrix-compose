@@ -90,4 +90,4 @@ docker-compose up -d
 ```
 
 ## Add an admin user 🧑‍🦰
-See [Synapse GitHub](https://github.com/matrix-org/synapse/tree/develop/docker#generating-an-admin-user) for a tutorial on how to do this. Switch "synapse" (containers name) in with `matrix-compose_synapse_1`.
+See [Synapse GitHub](https://github.com/matrix-org/synapse/tree/develop/docker#generating-an-admin-user) for a tutorial on how to do this. Replace "synapse" (containers name) in the provided command with `matrix-compose_synapse_1` - which is the auto-generated name of your docker-compose synapse server container.
