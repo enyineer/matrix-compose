@@ -50,6 +50,6 @@ Save the file.
 ## Start the engines 🚂
 Run:
 ```
-chmod +x start.sh
-./start.sh
+chmod +x run.sh
+./run.sh
 ```
