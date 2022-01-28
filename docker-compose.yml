@@ -38,6 +38,7 @@ services:
     networks:
       matrix_backend:
         ipv4_address: 10.10.10.3
+      matrix_frontend: 10.10.11.3
     volumes:
      - ./matrix/synapse:/data
     expose:
@@ -52,7 +53,7 @@ services:
     restart: unless-stopped
     networks:
       matrix-frontend:
-        ipv4_address: 10.10.11.3
+        ipv4_address: 10.10.11.4
     volumes:
       - nginx-certs:/etc/nginx/certs
       - nginx-vhost:/etc/nginx/vhost.d
@@ -67,7 +68,7 @@ services:
     restart: unless-stopped
     networks:
       matrix-frontend:
-        ipv4_address: 10.10.11.4
+        ipv4_address: 10.10.11.5
     volumes:
       - nginx-certs:/etc/nginx/certs
       - nginx-vhost:/etc/nginx/vhost.d
