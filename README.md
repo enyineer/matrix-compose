@@ -45,6 +45,10 @@ database:
     cp_min: 5
     cp_max: 10
 ```
+Replace the default listeners resources (under listeners object) with this:
+```
+- names: [client, federation, openid]
+```
 Save the file.
 
 ### Edit the element config
