@@ -63,7 +63,7 @@ services:
     volumes:
       - nginx-certs:/etc/nginx/certs
       - nginx-html:/usr/share/nginx/html
-      - /matrix/nginx/vhost:/etc/nginx/vhost.d
+      - ./matrix/nginx/vhost:/etc/nginx/vhost.d
       - /var/run/docker.sock:/tmp/docker.sock:ro
     ports:
       - 80:80
@@ -83,7 +83,7 @@ services:
     volumes:
       - nginx-certs:/etc/nginx/certs
       - nginx-html:/usr/share/nginx/html
-      - /matrix/nginx/vhost:/etc/nginx/vhost.d
+      - ./matrix/nginx/vhost:/etc/nginx/vhost.d
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - acme:/etc/acme.sh
     environment:
