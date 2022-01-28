@@ -58,11 +58,35 @@ Open matrix/element/element-config.json and replace the following with your data
 "server_name": "XHosted"
 ```
 
+### First start
+Start your compose file once to create all the data directories:
+```
+docker-compose up -d
+```
+After it started, shut it down:
+```
+docker-compose down
+```
+
+### Add federation port to nginx-proxy host
+Create a new file in the vhost directory
+```
+nano matrix/nginx/vhost/your.synapse.domain
+```
+And paste:
+```
+# For the federation port
+listen 8448 ssl http2 default_server;
+listen [::]:8448 ssl http2 default_server;
+```
+Save the file.
+
+You are done configuring!
+
 ## Start the engines 🚂
 Run:
 ```
-chmod +x run.sh
-./run.sh
+docker-compose up -d
 ```
 
 ## Add an admin user
