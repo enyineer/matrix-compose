@@ -57,7 +57,7 @@ services:
     image: nginxproxy/nginx-proxy
     restart: unless-stopped
     networks:
-      matrix-frontend:
+      matrix_frontend:
         ipv4_address: 10.10.11.4
     volumes:
       - nginx-certs:/etc/nginx/certs
@@ -74,7 +74,7 @@ services:
     image: nginxproxy/acme-companion
     restart: unless-stopped
     networks:
-      matrix-frontend:
+      matrix_frontend:
         ipv4_address: 10.10.11.5
     volumes:
       - nginx-certs:/etc/nginx/certs
