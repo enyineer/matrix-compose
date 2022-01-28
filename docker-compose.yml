@@ -16,6 +16,9 @@ services:
       POSTGRES_DB: synapse
       POSTGRES_USER: synapse
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      LC_ALL: 'C'
+      LC_COLLATE: 'C'
+      LC_CTYPE: 'C'
      
   element:
     depends_on:
