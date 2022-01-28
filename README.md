@@ -1,5 +1,5 @@
 # matrix-compose
-A simple starting point for self-hosting a synapse server with nginx + letsencrypt as a reverse proxy
+A simple starting point for self-hosting a synapse server with nginx + letsencrypt as a reverse proxy and element as a frontend.
 
 ## Setup
 ### Create networks and Config
